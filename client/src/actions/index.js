@@ -8,6 +8,7 @@ export const signup = (formProps, callback) => async (dispatch) => {
     const response = await axios.post(SIGN_UP_API, formProps);
 
     dispatch({ type: AUTH_USER, payload: response.data.token });
+    localStorage.setItem('token', response.data.token);
     callback();
   } catch (e) {
     console.log(e);
