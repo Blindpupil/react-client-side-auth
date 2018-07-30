@@ -6,7 +6,9 @@ import * as actions from '../../actions';
 
 class Sign_up extends Component {
   onSubmit = (formProps) => {
-    this.props.signup(formProps);
+    this.props.signup(formProps, () => {
+      this.props.history.push('/feature');
+    });
   };
 
   render() {
@@ -26,13 +28,20 @@ class Sign_up extends Component {
                  component="input" autoComplete="none">
           </Field>
         </fieldset>
+        <div>
+          {this.props.errorMessage}
+        </div>
         <button>Sign Up</button>
       </form>
     )
   }
 }
 
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.errorMessage }
+}
+
 export default compose(
-  connect(null, actions), // High Order Components applied to this one
+  connect(mapStateToProps, actions), // High Order Components applied to this one
   reduxForm({form: 'signup'})
 )(Sign_up);
