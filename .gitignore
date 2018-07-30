@@ -1,0 +1,9 @@
+# node modules
+/server/node_modules
+
+# private
+/server/config.js
+
+# IDE
+.DS_Store
+.idea/
