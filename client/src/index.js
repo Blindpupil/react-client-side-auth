@@ -13,7 +13,10 @@ import Feature from './components/Feature';
 
 const store = createStore(
   reducers,
-  {},
+  // Remember, this second argument is the default state
+  {
+    auth: {authenticated: localStorage.getItem('token')}
+  },
   applyMiddleware(reduxThunk)
 );
 
